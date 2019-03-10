@@ -39,6 +39,10 @@ def prepare_image(image, target):
 	# return the processed image
 	return image
 
+@app.route('/model')
+def model():
+	return model.to_json()
+
 @app.route("/predict", methods=["POST"])
 def predict():
 	# initialize the data dictionary that will be returned from the
