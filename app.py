@@ -39,6 +39,10 @@ def prepare_image(image, target):
 	# return the processed image
 	return image
 
+@app.route('/')
+def model():
+	return 'Hello World'
+
 @app.route('/model')
 def model():
 	return model.to_json()
