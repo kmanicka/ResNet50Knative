@@ -4,6 +4,7 @@
 
 # import the necessary packages
 from keras.applications import ResNet50
+from keras.models import load_model
 from keras.preprocessing.image import img_to_array
 from keras.applications import imagenet_utils
 from PIL import Image
@@ -16,12 +17,12 @@ import tensorflow as tf
 app = flask.Flask(__name__)
 model = None
 
-def load_model():
+def load_local_model():
 	# load the pre-trained Keras model (here we are using a model
 	# pre-trained on ImageNet and provided by Keras, but you can
 	# substitute in your own networks just as easily)
 	global model
-	model = ResNet50(weights="imagenet")
+	model = load_model('resnet50_model.h5')
 	global graph
 	graph = tf.get_default_graph()
 
@@ -40,7 +41,7 @@ def prepare_image(image, target):
 	return image
 
 @app.route('/')
-def model():
+def hello():
 	return 'Hello World'
 
 @app.route('/model')
@@ -87,5 +88,5 @@ def predict():
 if __name__ == "__main__":
 	print(("* Loading Keras model and Flask starting server..."
 		"please wait until server has fully started"))
-	load_model()
+	load_local_model()
 	app.run(host='0.0.0.0')
