@@ -12,5 +12,5 @@ spec:
             image: docker.io/kmanicka/resnet50 # The URL to the image of the app
             env:
               - name: TARGET # The environment variable printed out by the sample app
-                value: "Go Sample v2"
+                value: "Hellow World"
 
